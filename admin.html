@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pannello Admin - Sisal Wincity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset base e variabili */
+        :root {
+            --primary-color: #e63946;
+            --secondary-color: #457b9d;
+            --dark-color: #1d3557;
+            --light-color: #f1faee;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --max-width: 1200px;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--dark-color);
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        img {
+            max-width: 100%;
+        }
+        
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            overflow: hidden;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            background-color: #d32f2f;
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: #fff;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #3a6a8a;
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            color: var(--dark-color);
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .main-nav {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            margin-left: 20px;
+        }
+        
+        .main-nav a {
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 5px 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .main-nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Stili specifici per il pannello admin */
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .admin-title {
+            margin: 0;
+            color: #333;
+        }
+        
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .orders-table th, .orders-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .orders-table th {
+            background-color: #f8f8f8;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .orders-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .order-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        
+        .status-nuovo {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .status-in-preparazione {
+            background-color: #fff8e1;
+            color: #ff8f00;
+        }
+        
+        .status-pronto {
+            background-color: #e8f5e9;
+            color: #388e3c;
+        }
+        
+        .status-consegnato {
+            background-color: #e8f5e9;
+            color: #388e3c;
+        }
+        
+        .status-annullato {
+            background-color: #ffebee;
+            color: #d32f2f;
+        }
+        
+        .action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-right: 5px;
+        }
+        
+        .view-btn {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .edit-btn {
+            background-color: #fff8e1;
+            color: #ff8f00;
+        }
+        
+        .delete-btn {
+            background-color: #ffebee;
+            color: #d32f2f;
+        }
+        
+        .restore-btn {
+            background-color: #e8f5e9;
+            color: #388e3c;
+        }
+        
+        .order-details-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            margin: 50px auto;
+            padding: 30px;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .close-modal {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .order-info {
+            margin-bottom: 20px;
+        }
+        
+        .order-items {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .status-select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        .no-orders {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        /* Stili per i tab */
+        .tabs-container {
+            margin-bottom: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            border: none;
+            background: none;
+            font-size: 16px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .filter-group {
+            margin-right: 20px;
+            display: inline-block;
+        }
+        
+        .filters {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="wincitylogo.jpg" alt="Sisal Wincity Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>Sisal Wincity</h1>
+                    <p>Pannello Amministrazione</p>
+                </div>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="index.html">Torna al Sito</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div id="login-section" class="login-container">
+        <h2>Accesso Amministratore</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Accedi</button>
+        </form>
+    </div>
+
+    <div id="admin-section" style="display: none;">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h2 class="admin-title">Gestione Ordini</h2>
+                <button id="logout-btn" class="btn btn-secondary">Logout</button>
+            </div>
+            
+            <div class="tabs-container">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="orders">Ordini</button>
+                    <button class="tab-btn" data-tab="all">Tutti gli Ordini</button>
+                    <button class="tab-btn" data-tab="canceled">Ordini Cancellati</button>
+                </div>
+            </div>
+            
+            <div id="orders-tab" class="tab-content active">
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="status-filter">Stato:</label>
+                        <select id="status-filter">
+                            <option value="nuovo">Nuovi</option>
+                            <option value="in-preparazione">In Preparazione</option>
+                            <option value="pronto">Pronti</option>
+                            <option value="consegnato">Consegnati</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="date-filter">Data Ritiro:</label>
+                        <input type="date" id="date-filter">
+                    </div>
+                    <button id="clear-filters" class="btn btn-secondary">Cancella Filtri</button>
+                </div>
+                
+                <div class="table-container">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cliente</th>
+                                <th>Data Ritiro</th>
+                                <th>Ora</th>
+                                <th>Totale</th>
+                                <th>Stato</th>
+                                <th>Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-list">
+                            <!-- Gli ordini verranno inseriti qui dinamicamente -->
+                        </tbody>
+                    </table>
+                    <p id="no-orders" style="display: none; text-align: center; padding: 20px;">Nessun ordine trovato.</p>
+                </div>
+            </div>
+            
+            <div id="all-tab" class="tab-content">
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="all-date-filter">Data Ritiro:</label>
+                        <input type="date" id="all-date-filter">
+                    </div>
+                    <button id="clear-all-filters" class="btn btn-secondary">Cancella Filtri</button>
+                </div>
+                
+                <div class="table-container">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cliente</th>
+                                <th>Data Ritiro</th>
+                                <th>Ora</th>
+                                <th>Totale</th>
+                                <th>Stato</th>
+                                <th>Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody id="all-orders-list">
+                            <!-- Tutti gli ordini verranno inseriti qui dinamicamente -->
+                        </tbody>
+                    </table>
+                    <p id="no-all-orders" style="display: none; text-align: center; padding: 20px;">Nessun ordine trovato.</p>
+                </div>
+            </div>
+            
+            <div id="canceled-tab" class="tab-content">
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="canceled-date-filter">Data Ritiro:</label>
+                        <input type="date" id="canceled-date-filter">
+                    </div>
+                    <button id="clear-canceled-filters" class="btn btn-secondary">Cancella Filtri</button>
+                </div>
+                
+                <div class="table-container">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cliente</th>
+                                <th>Data Ritiro</th>
+                                <th>Ora</th>
+                                <th>Totale</th>
+                                <th>Stato</th>
+                                <th>Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody id="canceled-orders-list">
+                            <!-- Gli ordini cancellati verranno inseriti qui dinamicamente -->
+                        </tbody>
+                    </table>
+                    <p id="no-canceled-orders" style="display: none; text-align: center; padding: 20px;">Nessun ordine cancellato trovato.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="order-details" class="order-details-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Dettagli Ordine</h3>
+            <div id="order-details-content">
+                <!-- I dettagli dell'ordine verranno caricati dinamicamente qui -->
+            </div>
+            <div class="modal-footer">
+                <button id="close-details-btn" class="btn btn-primary">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit-status" class="order-details-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Modifica Stato Ordine</h3>
+            <div id="edit-status-content">
+                <div class="form-group">
+                    <label for="status-select">Nuovo Stato:</label>
+                    <select id="status-select" class="status-select">
+                        <option value="nuovo">Nuovo</option>
+                        <option value="in-preparazione">In Preparazione</option>
+                        <option value="pronto">Pronto</option>
+                        <option value="consegnato">Consegnato</option>
+                        <option value="annullato">Annullato</option>
+                    </select>
+                </div>
+                <input type="hidden" id="edit-order-id">
+            </div>
+            <div class="modal-footer">
+                <button id="save-status-btn" class="btn btn-primary">Salva</button>
+                <button id="cancel-edit-btn" class="btn btn-secondary">Annulla</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Scripts -->
+    <script src="js/menu-data.js"></script>
+    <script src="js/email-service.js"></script>
+    <script src="js/auth-service.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

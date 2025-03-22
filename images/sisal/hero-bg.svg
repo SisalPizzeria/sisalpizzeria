@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#003366;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0066cc;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#grad1)" />
+  <text x="600" y="300" font-family="Arial" font-size="48" font-weight="bold" text-anchor="middle" fill="#ffffff">SISAL WINCITY</text>
+  <text x="600" y="370" font-family="Arial" font-size="24" text-anchor="middle" fill="#ffffff">Via Mario Gaetano Columba n85/91, Syracuse, Italy</text>
+</svg>

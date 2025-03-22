@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Deliziose pizze autentiche e bevande. Ordina online per la consegna o il ritiro.">
+    <title>Sisal Pizzeria</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="wincitylogo.jpg" alt="Sisal Wincity Logo" class="logo-img">
+                <div class="logo-text">
+                    <h1>Sisal Wincity</h1>
+                    <p>Pizzeria e Agenzia Scommesse</p>
+                </div>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#order">Prenota</a></li>
+                    <li><a href="#location">Dove Siamo</a></li>
+                </ul>
+                <div class="cart-icon">
+                    <a href="#order"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+                </div>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Autentica Pizza Italiana</h2>
+                <p>Fatta con amore e tradizione dal 1985</p>
+                <a href="#menu" class="btn btn-primary">Vedi Menu</a>
+                <a href="#order" class="btn btn-secondary">Prenota Ora</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <h2 class="section-title">Il Nostro Menu</h2>
+            
+            <div class="menu-filters">
+                <div class="search-container">
+                    <input type="text" id="menu-search" placeholder="Cerca nel menu...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="category-filters">
+                    <button class="filter-btn active" data-category="all">Tutti</button>
+                    <button class="filter-btn" data-category="pizza">Pizza</button>
+                    <button class="filter-btn" data-category="drinks">Bevande</button>
+                </div>
+            </div>
+            
+            <div class="menu-items">
+                <!-- Menu items will be dynamically populated from JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="order" class="order-section">
+        <div class="container">
+            <h2 class="section-title">Prenota il Tuo Tavolo</h2>
+            
+            <div class="order-container">
+                <div class="order-summary">
+                    <h3>Il Tuo Ordine</h3>
+                    <div id="cart-items">
+                        <!-- Cart items will be dynamically populated -->
+                        <p class="empty-cart-message">Il tuo carrello è vuoto</p>
+                    </div>
+                    <div class="cart-totals">
+                        <div class="subtotal">
+                            <span>Subtotale:</span>
+                            <span id="subtotal-amount">€0.00</span>
+                        </div>
+                        <div class="total">
+                            <span>Totale:</span>
+                            <span id="total-amount">€0.00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="customer-info">
+                    <h3>Informazioni di Prenotazione</h3>
+                    <form id="order-form">
+                        <div class="form-group">
+                            <label for="full-name">Nome Completo</label>
+                            <input type="text" id="full-name" name="full-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Numero di Telefono</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickup-date">Data di Ritiro</label>
+                            <input type="date" id="pickup-date" name="pickup-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickup-time">Ora di Ritiro (19:00-22:00)</label>
+                            <input type="time" id="pickup-time" name="pickup-time" min="19:00" max="22:00" required>
+                            <small class="form-text">L'orario di ritiro deve essere tra le 19:00 e le 22:00</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">Istruzioni Speciali</label>
+                            <textarea id="notes" name="notes" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Prenota Ora</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="location" class="location-section">
+        <div class="container">
+            <h2 class="section-title">Dove Siamo</h2>
+            <div class="location-container">
+                <div class="location-info">
+                    <h3>Sisal Wincity Pizzeria</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Via Gaetano Mario Columba 85/91 - 96100 Siracusa (SR)</p>
+                    <p><i class="fas fa-phone"></i> 345 2810188</p>
+                    <p><i class="fas fa-envelope"></i> goldensiracusa@gmail.com</p>
+                    <h4>Orari</h4>
+                    <p>Lunedì - Venerdì: 09:00 - 24:00</p>
+                    <p>Sabato: 09:00 - 01:00</p>
+                    <p>Domenica: 09:00 - 24:00</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3177.5752357324316!2d15.270105376486515!3d37.06489937990097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1313cd6467ac613d%3A0x853a57bf1fb3b26f!2sSisal%20Wincity!5e0!3m2!1sit!2sit!4v1716307235034!5m2!1sit!2sit"
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="order-confirmation" class="modal">
+        <div class="modal-content">
+            <span id="close-confirmation" class="close-modal">&times;</span>
+            <h3>Conferma Prenotazione</h3>
+            <p>Grazie per la tua prenotazione! Abbiamo ricevuto i tuoi dati e prepareremo il tuo delizioso pasto per il ritiro.</p>
+            <p>La tua prenotazione è stata registrata con successo nel nostro sistema.</p>
+            <div class="modal-footer">
+                <button id="close-confirmation-btn" class="btn btn-primary">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Sisal Wincity</h2>
+                    <p>Pizzeria e Agenzia Scommesse</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Link Rapidi</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#order">Prenota</a></li>
+                        <li><a href="#location">Dove Siamo</a></li>
+                        <li><a href="admin.html">Amministrazione</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contattaci</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Via Gaetano Mario Columba 85/91 - 96100 Siracusa (SR)</p>
+                    <p><i class="fas fa-phone"></i> 345 2810188</p>
+                    <p><i class="fas fa-envelope"></i> goldensiracusa@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sisal Wincity Pizzeria. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Preloader per migliorare l'esperienza di caricamento -->
+    <div id="preloader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.95); display: flex; justify-content: center; align-items: center; z-index: 9999;">
+        <div style="text-align: center;">
+            <div class="spinner" style="width: 40px; height: 40px; margin: 0 auto; border: 4px solid rgba(230, 57, 70, 0.1); border-radius: 50%; border-top-color: #e63946; animation: spin 1s linear infinite;"></div>
+            <p style="margin-top: 15px; font-family: 'Playfair Display', serif; color: #1d3557;">Caricamento...</p>
+        </div>
+    </div>
+    
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+    <!-- EmailJS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <!-- Application Scripts -->
+    <script src="js/menu-data.js"></script>
+    <script src="js/email-service.js"></script>
+    <script src="js/app.js"></script>
+    
+    <!-- Script per debug del carrello -->
+    <script>
+        // Nascondi il preloader dopo che la pagina è completamente caricata
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.style.opacity = '0';
+                preloader.style.transition = 'opacity 0.5s ease';
+                setTimeout(function() {
+                    preloader.style.display = 'none';
+                }, 500);
+            }
+            
+            // Diagnostica per il carrello
+            console.log('Diagnostica carrello:');
+            console.log('menuItems caricati:', window.menuItems ? window.menuItems.length : 'No');
+            
+            // Verifica che i pulsanti del carrello abbiano l'event listener
+            setTimeout(function() {
+                const buttons = document.querySelectorAll('.add-to-cart-btn');
+                console.log('Pulsanti carrello trovati:', buttons.length);
+                
+                // Aggiungi event listener direttamente qui per sicurezza
+                buttons.forEach(button => {
+                    button.removeEventListener('click', window.cartClick);
+                    
+                    window.cartClick = function(e) {
+                        e.preventDefault();
+                        const itemId = this.getAttribute('data-id');
+                        console.log('Click su aggiungi al carrello:', itemId);
+                        
+                        if (!itemId) return;
+                        
+                        const item = window.menuItems.find(item => item.id === itemId);
+                        if (item) {
+                            // Funzione per aggiungere al carrello definita inline
+                            const cart = JSON.parse(localStorage.getItem('pizzeriaCart') || '[]');
+                            const existingItem = cart.find(cartItem => cartItem.id === item.id);
+                            
+                            if (existingItem) {
+                                existingItem.quantity += 1;
+                            } else {
+                                cart.push({
+                                    ...item,
+                                    quantity: 1
+                                });
+                            }
+                            
+                            localStorage.setItem('pizzeriaCart', JSON.stringify(cart));
+                            
+                            // Mostra notifica
+                            alert(item.name + ' aggiunto al carrello!');
+                            
+                            // Ricarica pagina per aggiornare il carrello
+                            window.location.reload();
+                        }
+                    };
+                    
+                    button.addEventListener('click', window.cartClick);
+                });
+                
+                console.log('Event listener aggiunti manualmente ai pulsanti');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
